@@ -21,6 +21,7 @@ handle_options() {
                 update
                 install
                 make_directories
+                install_files
                 ;;
             "${flags[2]}")  # do only update option
                 update
