@@ -1,0 +1,8 @@
+xterm*background: black
+xterm*foreground: white
+xterm*geometry: 155x45
+xterm*scrollBar: false
+xterm*font: Small
+xterm*allowBoldFonts: false
+xterm*boldMode: false
+

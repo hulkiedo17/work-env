@@ -1,0 +1,18 @@
+[user]
+	email = example@gmail.com
+	name = example
+[core]
+	editor = vim
+[alias]
+	ss = status -s
+	s = status
+	cm = commit
+	ch = checkout
+	br = branch
+	mg = merge
+	reb = rebase
+	lg = "log --oneline --all --graph --stat"
+[color]
+	ui = true
+[credential]
+	helper = cache --timeout=3600
