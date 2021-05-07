@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 current_dir="$PWD"
 home_dir="$HOME"
@@ -9,13 +9,15 @@ final_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources ~/.bashrc.d/path.bash ~/.bas
 programs=(vim gcc g++ gdb git make valgrind nasm asciinema xterm radare2 cppcheck)
 update_commands=(update upgrade dist-upgrade)
 directories=(.bashrc.d .bin work)
-sub_directories=(c sh text oth git)
+sub_directories=(lang text future others)
+sub_sub_directories=(c d rust sh)
 
 handle_options() {
     for i in $@; do
         case "$i" in
             "${flags[0]}")  # print help
                 script_help
+				exit 0
                 ;;
             "${flags[1]}")  # do all options
                 update
@@ -51,14 +53,15 @@ handle_options() {
 }
 
 script_help() {
-    printf "\nUsage: ./init.sh [-h|-a|-u|-i|-d]\n\n"
-    printf "options:\n"
-    printf "-h -> print this help\n"
-    printf "-a -> all flags (-u -i)\n"
-    printf "-u -> update (system)\n"
-    printf "-i -> install (programs)\n"
-    printf "-d -> directories (make new dirs)\n"
-    printf "-f -> install files(dotfiles)\n"
+    echo "Usage: ./init.sh [-h|-a|-u|-i|-d]"
+	echo ""
+    echo "[options]:"
+    echo -e "\t-h -> print this help"
+    echo -e "\t-a -> all flags (-u -i)"
+    echo -e "\t-u -> update (system)"
+    echo -e "\t-i -> install (programs)"
+    echo -e "\t-d -> directories (make new dirs)"
+    echo -e "\t-f -> install files(dotfiles)"
 }
 
 update() {
@@ -95,6 +98,15 @@ make_directories() {
     for i in ${sub_directories[*]}; do
         mkdir $i
     done
+
+	# sub-sub-directories
+	cd lang
+	printf "\n[sub-sub-directories]:\n"
+	for i in ${sub_sub_directories[*]}; do
+		mkdir $i
+	done
+
+	cd ../../
 }
 
 install_files() {
