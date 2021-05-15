@@ -11,6 +11,7 @@
 	br = branch
 	mg = merge
 	reb = rebase
+	rmt = "remote -v"
 	lg = "log --oneline --all --graph --stat"
 [color]
 	ui = true
