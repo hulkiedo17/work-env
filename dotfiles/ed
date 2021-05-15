@@ -1,3 +1,0 @@
-ed() {
-	command ed -p\* "$@"
-}

@@ -14,5 +14,3 @@
 	lg = "log --oneline --all --graph --stat"
 [color]
 	ui = true
-[credential]
-	helper = cache --timeout=3600
