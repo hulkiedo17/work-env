@@ -70,7 +70,7 @@ update() {
 
 	for i in ${update_commands[*]}; do
 		printf "\n[$i]:\n"
-		sudo apt-get $i
+		yes | sudo apt-get $i
 	done
 }
 
@@ -79,7 +79,7 @@ install() {
 
 	for i in ${programs[*]}; do
 		printf "\n[$i]:\n"
-		sudo apt-get install $i
+		yes | sudo apt-get install $i
 	done
 }
 
