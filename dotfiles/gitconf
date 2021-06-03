@@ -12,6 +12,7 @@
 	mg = merge
 	reb = rebase
 	rmt = "remote -v"
+	dc = "diff --cached"
 	lg = "log --oneline --all --graph --stat"
 [color]
 	ui = true
