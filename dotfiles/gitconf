@@ -16,3 +16,5 @@
 	lg = "log --oneline --all --graph --stat"
 [color]
 	ui = true
+[init]
+	defaultBranch = master
