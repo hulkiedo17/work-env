@@ -9,8 +9,8 @@ final_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources ~/.bashrc.d/path.bash ~/.bas
 programs=(vim gcc g++ gdb git make valgrind nasm asciinema xterm radare2 cppcheck)
 update_commands=(update upgrade dist-upgrade)
 directories=(.bashrc.d .bin work)
-sub_directories=(lang text future others)
-sub_sub_directories=(c d sh)
+sub_directories=(main text future others sources)
+sub_sub_directories=(c git rust sh)
 
 handle_options() {
 	for i in $@; do
