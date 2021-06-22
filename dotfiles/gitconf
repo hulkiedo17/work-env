@@ -15,6 +15,7 @@
 	dc = "diff --cached"
 	lg = "log --oneline --all --graph --stat"
 	lg2 = "log --oneline --all --graph"
+	lg3 = "log --pretty=format:\"%h [%an] - %s\" --graph --all"
 [color]
 	ui = true
 [init]
