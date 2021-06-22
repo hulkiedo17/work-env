@@ -13,9 +13,9 @@
 	reb = rebase
 	rmt = "remote -v"
 	dc = "diff --staged"
-	lg = "log --oneline --graph --stat"
-	lg2 = "log --oneline --graph"
-	lg3 = "log --pretty=format:\"%C(yellow)%h%Creset %C(blue)[%an]%Creset - %s %Cred%d%Creset\" --graph"
+	lg = "log --oneline --graph --stat --all"
+	lg2 = "log --oneline --graph --all"
+	lg3 = "log --pretty=format:\"%C(yellow)%h%Creset %C(blue)[%an]%Creset - %s %Cred%d%Creset\" --graph --all"
 [color]
 	ui = true
 [init]
