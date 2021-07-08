@@ -11,6 +11,8 @@
 	br = branch
 	mg = merge
 	reb = rebase
+	fa = "fetch --all"
+	bvv = "branch -vv"
 	rmt = "remote -v"
 	dc = "diff --staged"
 	lg = "log --oneline --graph --stat --all"
