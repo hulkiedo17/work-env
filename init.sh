@@ -9,33 +9,35 @@ final_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources ~/.bashrc.d/path.bash ~/.bas
 programs=(vim gcc g++ gdb git make valgrind nasm asciinema xterm radare2 cppcheck)
 update_commands=(update upgrade dist-upgrade)
 directories=(.bashrc.d .bin work)
-sub_directories=(main text future others sources)
-sub_sub_directories=(c git rust sh)
+#sub_directories=(main text future others sources)
+#sub_sub_directories=(c git rust sh)
 
 handle_options() {
+	printf "\nSTART INITIALIZATION SCRIPT\n"
+
 	for i in $@; do
 		case "$i" in
 			"${flags[0]}")  # print help
-			script_help
+			Help
 			exit 0
 			;;
 		"${flags[1]}")  # do all options
-			update
-			install
-			make_directories
-			install_files
+			Update
+			Programs
+			Directories
+			Files
 			;;
 		"${flags[2]}")  # do only update option
-			update
+			Update
 			;;
 		"${flags[3]}")  # do only install option
-			install
+			Programs
 			;;
 		"${flags[4]}")  # do only directories option
-			make_directories
+			Directories
 			;;
 		"${flags[5]}")  # do only files option
-			install_files
+			Files
 			;;
 		*)
 			printf "\n$i - unknown option\n"
@@ -53,7 +55,7 @@ handle_options() {
 	printf "\nEND INITIALIZATION SCRIPT\n"
 }
 
-script_help() {
+Help() {
 	echo "Usage: ./init.sh [-h|-a|-u|-i|-d|-f]"
 	echo ""
 	echo "[options]:"
@@ -65,25 +67,29 @@ script_help() {
 	echo -e "\t-f -> install files(dotfiles)"
 }
 
-update() {
+Update() {
 	printf "\nUPDATE & UPGRADE:\n"
 
 	for i in ${update_commands[*]}; do
 		printf "\n[$i]:\n"
 		yes | sudo apt-get $i
 	done
+
+	printf "\nEND UPDATE\n"
 }
 
-install() {
+Programs() {
 	printf "\nINSTALL PROGRAMS:\n"
 
 	for i in ${programs[*]}; do
 		printf "\n[$i]:\n"
 		yes | sudo apt-get install $i
 	done
+	
+	printf "\nEND PRGORAM INSTALLING\n"
 }
 
-make_directories() {
+Directories() {
 	printf "\nMAKING DIRECTORIES:\n"
 
 	# main directories
@@ -93,24 +99,28 @@ make_directories() {
 		mkdir $i
 	done
 
+	# commented because it's unnecessary now
+
 	# sub-directories
-	cd work
-	printf "\n[sub-directories]:\n"
-	for i in ${sub_directories[*]}; do
-		mkdir $i
-	done
+	#cd work
+	#printf "\n[sub-directories]:\n"
+	#for i in ${sub_directories[*]}; do
+	#	mkdir $i
+	#done
 
 	# sub-sub-directories
-	cd lang
-	printf "\n[sub-sub-directories]:\n"
-	for i in ${sub_sub_directories[*]}; do
-		mkdir $i
-	done
+	#cd lang	// no-one lang directory
+	#printf "\n[sub-sub-directories]:\n"
+	#for i in ${sub_sub_directories[*]}; do
+	#	mkdir $i
+	#done
 
-	cd ../../
+	#cd ../../
+	
+	printf "\nEND MAKING DIRECTORIES\n"
 }
 
-install_files() {
+Files() {
 	printf "\nINSTALLING FILES:\n"
     
 	cd "$current_dir/dotfiles/"
@@ -123,6 +133,8 @@ install_files() {
 
 	printf "[bashrc]\n"
 	cat bashrc >> ~/.bashrc
+	
+	printf "\nEND INSTALLING FILES\n"
 }
 
 handle_options "$@"
