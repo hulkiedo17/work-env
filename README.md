@@ -24,22 +24,20 @@ $ ./init.sh
 
 # command line options
 
-### -h -> help
-some info about options and usage
+| options | description |
+| --- | --- |
+| -h | help message |
+| -a | all options below |
+| -u | update system |
+| -d | create directories |
+| -i | install programs |
+| -f | install dotfiles |
 
-### -u -> update system
-update upgrade dist-upgrade
+# notes
 
-### -i -> install programs
-this programs: vim gcc g++ gdb git make valgrind nasm asciinema xterm radare2 cppcheck
+Programs and dotfiles for install, directories to create, see in init.sh
 
-### -d -> creates directories
-this directores: .bin .bashrc.d work
+after running -i, all *.bash files contains in ~/.bashrc.d or in ~/
 
-### -f -> install files
-this files: .vimrc .gitconfig .Xresources path.bash prompt.bash ed.bash dbg.bash
+Prefer use -i after using -d, because some files should be in the ~/.bashrc.d
 
-all *.bash files contains in ~/.bashrc.d or in ~/
-
-### -a -> all options 
-does everything that the above options do combined
