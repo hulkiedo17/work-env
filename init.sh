@@ -86,7 +86,7 @@ Programs() {
 		yes | sudo apt-get install $i
 	done
 	
-	printf "\nEND PRGORAM INSTALLING\n"
+	printf "\nEND PROGRAM INSTALLING\n"
 }
 
 Directories() {
