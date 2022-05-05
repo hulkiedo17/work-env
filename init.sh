@@ -3,45 +3,48 @@
 current_dir="$PWD"
 home_dir="$HOME"
 
-flags=(-h -a -u -i -d -f)
+options=(-h -a -u -i -d -f -s)
 source_dotfiles=(vimrc gitconf xresources path prompt dbg)
 final_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources ~/.bashrc.d/path.bash ~/.bashrc.d/prompt.bash ~/.bashrc.d/dbg.bash)
-programs=(vim gcc g++ gdb git make valgrind nasm asciinema xterm radare2 cppcheck cmake gdc)
+programs=(vim gcc g++ clang gdb make cmake valgrind nasm asciinema xterm cppcheck strace tmux time binutils util-linux)
 update_commands=(update upgrade dist-upgrade)
 directories=(.bashrc.d .bin work)
-#sub_directories=(main text future others sources)
-#sub_sub_directories=(c git rust sh)
+sub_directories=(text others sources)
 
 handle_options() {
 	printf "\nSTART INITIALIZATION SCRIPT\n"
 
 	for i in $@; do
 		case "$i" in
-			"${flags[0]}")  # print help
-			Help
-			exit 0
-			;;
-		"${flags[1]}")  # do all options
-			Update
-			Programs
-			Directories
-			Files
-			;;
-		"${flags[2]}")  # do only update option
-			Update
-			;;
-		"${flags[3]}")  # do only install option
-			Programs
-			;;
-		"${flags[4]}")  # do only directories option
-			Directories
-			;;
-		"${flags[5]}")  # do only files option
-			Files
-			;;
-		*)
-			printf "\n$i - unknown option\n"
-			;;
+			"${options[0]}")  # print help
+				Help
+				exit 0
+				;;
+			"${options[1]}")  # do all options
+				Update
+				Programs
+				Directories
+				Files
+				Source
+				;;
+			"${options[2]}")  # do only update option
+				Update
+				;;
+			"${options[3]}")  # do only install option
+				Programs
+				;;
+			"${options[4]}")  # do only directories option
+				Directories
+				;;
+			"${options[5]}")  # do only files option
+				Files
+				;;
+			"${options[6]}") # do source bashrc
+				Source
+				;;
+			*)
+				printf "\n$i - unknown option\n"
+				;;
 		esac
 	done
 
@@ -65,6 +68,8 @@ Help() {
 	echo -e "\t-i -> install(programs)"
 	echo -e "\t-d -> directories"
 	echo -e "\t-f -> install files(dotfiles)"
+	echo -e "\n"
+	echo -e "\t\t(before installing files, you need to create directories: first -d, then -f)"
 }
 
 Update() {
@@ -99,24 +104,15 @@ Directories() {
 		mkdir $i
 	done
 
-	# commented because it's unnecessary now
-
 	# sub-directories
-	#cd work
-	#printf "\n[sub-directories]:\n"
-	#for i in ${sub_directories[*]}; do
-	#	mkdir $i
-	#done
+	cd work
+	printf "\n[sub-directories]:\n"
+	for i in ${sub_directories[*]}; do
+		mkdir $i
+	done
 
-	# sub-sub-directories
-	#cd lang	// no-one lang directory
-	#printf "\n[sub-sub-directories]:\n"
-	#for i in ${sub_sub_directories[*]}; do
-	#	mkdir $i
-	#done
+	cd ../
 
-	#cd ../../
-	
 	printf "\nEND MAKING DIRECTORIES\n"
 }
 
@@ -135,6 +131,12 @@ Files() {
 	cat bashrc >> ~/.bashrc
 	
 	printf "\nEND INSTALLING FILES\n"
+}
+
+Source() {
+	printf "\nSOURCE BASHRC\n"
+
+	source "$home_dir/.bashrc"
 }
 
 handle_options "$@"

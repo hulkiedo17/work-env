@@ -13,7 +13,7 @@ so that i don't have to configure everything manually.
 # how to run
 usage:
 ```shell
-$ ./init.sh [-u|-a|-d|-f|-i|-h]
+$ ./init.sh [-u|-a|-d|-f|-i|-h|-s]
 ```
 
 if cannot work, type this:
@@ -32,6 +32,7 @@ $ ./init.sh
 | -d | create directories |
 | -i | install programs |
 | -f | install dotfiles |
+| -s | source bash config |
 
 # notes
 
