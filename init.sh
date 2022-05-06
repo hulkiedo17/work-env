@@ -9,7 +9,7 @@ final_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources ~/.bashrc.d/path.bash ~/.bas
 programs=(vim gcc g++ clang gdb make cmake valgrind nasm asciinema xterm cppcheck strace tmux time binutils util-linux)
 update_commands=(update upgrade dist-upgrade)
 directories=(.bashrc.d .bin work)
-sub_directories=(text others sources)
+sub_directories=(main text others sources)
 
 handle_options() {
 	printf "\nSTART INITIALIZATION SCRIPT\n"
