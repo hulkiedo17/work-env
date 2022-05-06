@@ -56,6 +56,7 @@ handle_options() {
 	fi
 
 	printf "\nEND INITIALIZATION SCRIPT\n"
+	exit 0
 }
 
 Help() {
