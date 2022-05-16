@@ -8,8 +8,7 @@ source_dotfiles=(vimrc gitconf xresources path prompt dbg)
 final_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources ~/.bashrc.d/path.bash ~/.bashrc.d/prompt.bash ~/.bashrc.d/dbg.bash)
 programs=(vim gcc g++ clang gdb make cmake valgrind nasm asciinema xterm cppcheck strace tmux time binutils util-linux)
 update_commands=(update upgrade dist-upgrade)
-directories=(.bashrc.d .bin work)
-sub_directories=(main text others sources)
+directories=(.bashrc.d .bin main)
 
 handle_options() {
 	printf "\nSTART INITIALIZATION SCRIPT\n"
@@ -98,21 +97,11 @@ Programs() {
 Directories() {
 	printf "\nMAKING DIRECTORIES:\n"
 
-	# main directories
 	cd $home_dir
 	for i in ${directories[*]}; do
 		printf "\n[$i]:\n"
 		mkdir $i
 	done
-
-	# sub-directories
-	cd work
-	printf "\n[sub-directories]:\n"
-	for i in ${sub_directories[*]}; do
-		mkdir $i
-	done
-
-	cd ../
 
 	printf "\nEND MAKING DIRECTORIES\n"
 }
