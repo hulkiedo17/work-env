@@ -8,7 +8,7 @@ source_dotfiles=(vimrc gitconf xresources path prompt dbg)
 final_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources ~/.bashrc.d/path.bash ~/.bashrc.d/prompt.bash ~/.bashrc.d/dbg.bash)
 programs=(vim gcc g++ clang gdb make cmake valgrind nasm asciinema xterm cppcheck strace tmux time binutils util-linux)
 update_commands=(update upgrade dist-upgrade)
-directories=(.bashrc.d .bin main)
+directories=(.bashrc.d .bin work)
 
 handle_options() {
 	printf "\nSTART INITIALIZATION SCRIPT\n"
