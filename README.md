@@ -1,4 +1,4 @@
-# init-script
+# work-env
 My collection of dotfiles and initialization script for work environment
 
 # how to use
@@ -13,13 +13,13 @@ so that i don't have to configure everything manually.
 # how to run
 usage:
 ```shell
-$ ./init.sh [-u|-a|-d|-f|-i|-h|-s]
+$ ./env.sh [-u|-a|-d|-f|-i|-h|-s]
 ```
 
 if cannot work, type this:
 ```shell
-$ chmod +x init.sh
-$ ./init.sh
+$ chmod +x env.sh
+$ ./env.sh
 ```
 
 # command line options
@@ -29,8 +29,8 @@ $ ./init.sh
 | -h | help message |
 | -a | all options below |
 | -u | update system |
-| -d | create directories |
-| -i | install programs |
+| -d | make directories |
+| -i | install packages |
 | -f | install dotfiles |
 | -s | source bash config |
 
