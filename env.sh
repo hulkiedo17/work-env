@@ -9,7 +9,7 @@ output_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources
 	~/.bashrc.d/dbg.bash)
 packages=(vim gcc g++ clang gdb make cmake valgrind nasm
 	asciinema xterm cppcheck strace tmux time binutils
-	util-linux shellcheck)
+	util-linux shellcheck xclip)
 update_commands=(update upgrade dist-upgrade)
 directories=(.bashrc.d .bin work)
 
