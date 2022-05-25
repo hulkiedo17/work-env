@@ -11,16 +11,28 @@
 	br = branch
 	mg = merge
 	reb = rebase
+	t = tag
+	rs = reset
+	d = diff
+	st = stash
+	bl = blame
+	cl = clone
+	pl = pull
+	pr = "pull --rebase"
+	sp = "stash pop"
+	rss = "reset --soft"
+	rsh = "reset --hard"
 	fa = "fetch --all"
 	bvv = "branch -vv"
 	rmt = "remote -v"
 	dc = "diff --staged"
-	lg = "log --oneline --graph --stat --all"
-	lg2 = "log --oneline --graph --all"
-	lg3 = "log --pretty=format:\"%C(yellow)%h%Creset %C(blue)[%an]%Creset - %s %Cred%d%Creset\" --graph --all"
+	lg = "log --oneline --graph --all"
+	lgs = "log --oneline --graph --stat --all"
+	lgt = "log --oneline --graph --all -10"
+	lgf = "log --pretty=format:\"%C(yellow)%h%Creset %C(blue)[%an]%Creset - %s %Cred%d%Creset\" --graph --all"
 [color]
 	ui = true
 [init]
 	defaultBranch = master
 [credential]
-	helper = cache
+	helper = cache --timeout=3600
