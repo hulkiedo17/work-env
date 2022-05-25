@@ -22,6 +22,18 @@ $ chmod +x env.sh
 $ ./env.sh
 ```
 
+## ssh script
+```shell
+$ ./ssh.sh [username]	# for example: ./ssh.sh example
+$ # it creates an ssh key to example@gmail.com, and copies to clipboard this key
+```
+
+if cannot work, type this:
+```shell
+$ chmod +x ssh.sh
+$ ./ssh.sh [username]
+```
+
 # command line options
 
 | options | description |
