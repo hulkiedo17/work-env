@@ -13,6 +13,15 @@ packages=(vim gcc g++ clang gdb make cmake valgrind nasm
 update_commands=(update upgrade dist-upgrade)
 directories=(.bashrc.d .bin work)
 
+if [ -f "/etc/debian_version" ] ; then
+	linux_type=debian
+elif [ -f "/etc/arch-release" ] ; then
+	linux_type=arch
+else
+	echo "unknown linux release"
+	exit 0
+fi
+
 handle_options() {
 	for i in "$@"; do
 		case "$i" in
@@ -52,7 +61,7 @@ handle_options() {
 		printf "You did not provide any options.\n"
 		printf "The system is updated by default.\n"
 
-		update
+		Update
 	fi
 }
 
@@ -70,15 +79,29 @@ Help() {
 }
 
 Update() {
-	for i in ${update_commands[*]}; do
-		yes | sudo apt-get "$i"
-	done
+	if [ "$linux_type" == "debian" ] ; then
+		for i in ${update_commands[*]}; do
+			yes | sudo apt-get "$i"
+		done
+	elif [ "$linux_type" == "arch" ] ; then
+		yes | sudo pacman -Syu
+		yes | sudo pacman -Syy
+	else
+		echo "unknown type of package manager"
+	fi
 }
 
 Packages() {
 	for i in ${packages[*]}; do
 		printf "\n[%s]\n" "$i"
-		yes | sudo apt-get install "$i"
+
+		if [ "$linux_type" == "debian" ] ; then
+			yes | sudo apt-get install "$i"
+		elif [ "$linux_type" == "arch" ] ; then
+			yes | sudo pacman -S "$i"
+		else
+			echo "unknown type of package manager"
+		fi
 	done
 }
 
