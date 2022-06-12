@@ -13,25 +13,13 @@ so that i don't have to configure everything manually.
 # how to run
 usage:
 ```shell
-$ ./env.sh [-u|-a|-d|-f|-i|-h|-s]
-```
-
-if cannot work, type this:
-```shell
-$ chmod +x env.sh
-$ ./env.sh
+$ ./install.sh [-u|-a|-d|-f|-i|-h|-s]
 ```
 
 ## ssh script
 ```shell
-$ ./ssh.sh [username]	# for example: ./ssh.sh example
-$ # it creates an ssh key to example@gmail.com, and copies to clipboard this key
-```
-
-if cannot work, type this:
-```shell
-$ chmod +x ssh.sh
-$ ./ssh.sh [username]
+$ ./ssh.sh [email]	# for example: ./ssh.sh example@example.com
+$ # it creates an ssh key to example@example.com, and copies to clipboard this key
 ```
 
 # command line options
