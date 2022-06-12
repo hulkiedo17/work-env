@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 path_to_dotfiles="$PWD/dotfiles"
 

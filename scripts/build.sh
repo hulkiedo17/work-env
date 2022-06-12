@@ -1,69 +1,62 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-EXEC="$1"
-options=(-v -s -a -d -c -r)
-
-# -v
-valgrind_check() {
-	echo "build.sh: valgrind"
-	valgrind "-s" "--leak-check=full" "--track-origins=yes" "--show-leak-kinds=all" "./$EXEC"
+usage() {
+	echo "usage: $0 [ -h | -c ] [ -r program | -s program | -d program | -t program ] [ -a file|path ]"
 }
 
-# -s
-strace_check() {
-	echo "build.sh: strace"
+sanitize() {
+	valgrind "-s" "--leak-check=full" "--track-origins=yes" "--show-leak-kinds=all" "./$1"
 }
 
-# -a
-cppcheck_start() {
-	echo "build.sh: cppcheck"
-}
-
-# -d
 debug() {
-	echo "build.sh: debug"
-	gdb "./$EXEC"
+	gdb ./"$1"
 }
 
-# -c
-compile() {
-	echo "build.sh: compile"
-	gcc "./$EXEC.c" "-o" "./$EXEC" "-g" "-O0" "-Wall" "-Wextra" "-Werror" "-lconf"
+analyze() {
+	cppcheck ./"$1"
 }
 
-# -r
-run_exec() {
-	echo "build.sh: run_exec"
-	./$EXEC
+trace() {
+	strace ./"$1"
 }
 
-handle_options() {
-	for i in $@; do
-		case "$i" in
-			"${options[0]}")
-				valgrind_check
-				;;
-			"${options[1]}")
-				#
-				;;
-			"${options[2]}")
-				#
-				;;
-			"${options[3]}")
-				debug
-				;;
-			"${options[4]}")
-				compile
-				;;
-			"${options[5]}")
-				run_exec
-				;;
-			*)
-				echo "build.sh: unknown command"
-				;;
-		esac
-	done
+compile_release() {
+	mkdir -p build
+	cd build
+
+	cmake "-DCMAKE_BUILD_TYPE=RELEASE" ".."
+	make
 }
 
-handle_options "$@"
+compile_debug() {
+	mkdir -p build
+	cd build
+
+	cmake "-DCMAKE_BUILD_TYPE=DEBUG" ".."
+	make
+}
+
+execute() {
+	./"$1"
+}
+
+if [ $# -lt 1 ] ; then
+	echo "no options found."
+	exit 1
+fi
+
+while getopts ":hcCr:s:d:a:t:p:P:" opt ; do
+	case $opt in
+		h) usage ;;
+		c) compile_debug ;;
+		C) compile_release ;;
+		r) execute "$OPTARG" ;;
+		s) sanitize "$OPTARG" ;;
+		d) debug "$OPTARG" ;;
+		a) analyze "$OPTARG" ;;
+		t) trace "$OPTARG" ;;
+		*) echo "no reasonable options found" ;;
+	esac
+done
+
 exit 0
