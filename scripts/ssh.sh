@@ -1,13 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 if [ -z "$1" ]; then
 	echo "please type your email."
 	exit 0
 fi
-
-#username="$1"
-#domain="gmail.com"	# "$2"
-#email="$username@$domain"
 
 email="$1"
 

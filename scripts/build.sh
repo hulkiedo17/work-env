@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 EXEC="$1"
 options=(-v -s -a -d -c -r)
