@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 usage() {
 	echo "usage: $0 [ -h | -c ] [ -r program | -s program | -d program | -t program ] [ -a file|path ]"

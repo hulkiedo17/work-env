@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 path_to_dotfiles="$PWD/dotfiles"
 
@@ -110,7 +110,7 @@ Directories() {
 
 	for i in ${directories[*]}; do
 		printf "[%s]\n" "$i"
-		mkdir "$i"
+		mkdir -p "$i"
 	done
 }
 
