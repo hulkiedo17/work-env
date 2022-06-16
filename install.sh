@@ -3,10 +3,10 @@
 path_to_dotfiles="$PWD/dotfiles"
 
 options=(-h -a -u -i -d -f -s)
-source_dotfiles=(vimrc gitconf xresources path prompt dbg)
+source_dotfiles=(vimrc gitconf xresources path prompt dbg counter)
 output_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources
 	~/.bashrc.d/path.bash ~/.bashrc.d/prompt.bash
-	~/.bashrc.d/dbg.bash)
+	~/.bashrc.d/dbg.bash ~/.bashrc.d/counter.bash)
 packages=(vim gcc g++ clang gdb make cmake valgrind nasm
 	asciinema xterm cppcheck strace tmux time binutils
 	util-linux shellcheck xclip)
