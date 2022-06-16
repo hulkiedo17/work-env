@@ -2,7 +2,7 @@
 
 path_to_dotfiles="$PWD/dotfiles"
 
-options=(-h -a -u -i -d -f -s)
+options=(-h -a -u -i -d -f -s -k)
 source_dotfiles=(vimrc gitconf xresources path prompt dbg counter)
 output_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources
 	~/.bashrc.d/path.bash ~/.bashrc.d/prompt.bash
@@ -22,47 +22,33 @@ else
 	exit 0
 fi
 
-handle_options() {
-	for i in "$@"; do
-		case "$i" in
-			"${options[0]}")
-				Help
-				exit 0
-				;;
-			"${options[1]}")
-				Update
-				Packages
-				Directories
-				Files
-				Source
-				;;
-			"${options[2]}")
-				Update
-				;;
-			"${options[3]}")
-				Packages
-				;;
-			"${options[4]}")
-				Directories
-				;;
-			"${options[5]}")
-				Files
-				;;
-			"${options[6]}")
-				Source
-				;;
-			*)
-				printf "\n%s - unknown option\n" "$i"
-				;;
-		esac
-	done
-
-	if [ $# = 0 ]; then
+ProcessOptions() {
+	if [ $# -lt 1 ] ; then
 		printf "You did not provide any options.\n"
 		printf "The system is updated by default.\n"
 
 		Update
 	fi
+
+	while getopts ":hauidfsk:" opt ; do
+		case $opt in
+			h) Help ;;
+			a)
+				Update
+				Packages
+				Directories
+				Files
+				Source
+				;;
+			u) Update ;;
+			i) Packages ;;
+			d) Directories ;;
+			f) Files ;;
+			s) Source ;;
+			k) GenerateSSH "$OPTARG" ;;
+			*) printf "\n%s - unknown option\n" "$i" ;;
+		esac
+	done
 }
 
 Help() {
@@ -74,7 +60,8 @@ Help() {
 	echo -e "\t-u -> update"
 	echo -e "\t-i -> install packages"
 	echo -e "\t-d -> make directories"
-	echo -e "\t-f -> install dotfiles\n"
+	echo -e "\t-f -> install dotfiles"
+	echo -e "\t-k [email] -> generate ssh key\n"
 	echo -e "(before installing files, you need to create directories: first -d, then -f)"
 }
 
@@ -132,5 +119,17 @@ Source() {
 	source "$HOME/.bashrc"
 }
 
-handle_options "$@"
+GenerateSSH() {
+	if [ -z "$1" ] ; then
+		echo "please type your email."
+		exit 0
+	fi
+
+	email="$1"
+
+	ssh-keygen "-t" "ed25519" "-C" "\"$email\""
+	cat ~/.ssh/id_ed25519.pub | xclip "-selection" "clipboard"
+}
+
+ProcessOptions "$@"
 exit 0

@@ -13,13 +13,7 @@ so that i don't have to configure everything manually.
 # how to run
 usage:
 ```shell
-$ ./install.sh [-u|-a|-d|-f|-i|-h|-s]
-```
-
-## ssh script
-```shell
-$ ./ssh.sh [email]	# for example: ./ssh.sh example@example.com
-$ # it creates an ssh key to example@example.com, and copies to clipboard this key
+$ ./install.sh [-u|-a|-d|-f|-i|-h|-s|-k]
 ```
 
 # command line options
@@ -33,6 +27,7 @@ $ # it creates an ssh key to example@example.com, and copies to clipboard this k
 | -i | install packages |
 | -f | install dotfiles |
 | -s | source bash config |
+| -k | generate ssh key |
 
 # notes
 
@@ -42,3 +37,9 @@ after running -i, all *.bash files contains in ~/.bashrc.d or in ~/
 
 Prefer use -i after using -d, because some files should be in the ~/.bashrc.d
 
+Also, if you want to generate ssh key, call -k option with email parameter, after generating key, public key will be copied to clipboard, then you can put it to github ssh in settings.
+
+example:
+```shell
+$ ./install.sh -k example@test.com
+```
