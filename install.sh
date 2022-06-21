@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 path_to_dotfiles="$PWD/dotfiles"
+backup_name="backup.tar.gz"
+archive_name="backup.tar"
 
-options=(-h -a -u -i -d -f -s -k)
 source_dotfiles=(vimrc gitconf xresources path prompt dbg counter)
 output_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources
 	~/.bashrc.d/path.bash ~/.bashrc.d/prompt.bash
@@ -30,7 +31,7 @@ ProcessOptions() {
 		Update
 	fi
 
-	while getopts ":hauidfsk:" opt ; do
+	while getopts ":hauidfsk:m:e:" opt ; do
 		case $opt in
 			h) Help ;;
 			a)
@@ -46,6 +47,8 @@ ProcessOptions() {
 			f) Files ;;
 			s) Source ;;
 			k) GenerateSSH "$OPTARG" ;;
+			m) MakeBackup "$OPTARG" ;;
+			e) ExtractBackup "$OPTARG" ;;
 			*) printf "\n%s - unknown option\n" "$i" ;;
 		esac
 	done
@@ -61,7 +64,9 @@ Help() {
 	echo -e "\t-i -> install packages"
 	echo -e "\t-d -> make directories"
 	echo -e "\t-f -> install dotfiles"
-	echo -e "\t-k [email] -> generate ssh key\n"
+	echo -e "\t-k [email] -> generate ssh key"
+	echo -e "\t-m [path]  -> generate backup file from path"
+	echo -e "\t-e [path]  -> extract backup file to path\n"
 	echo -e "(before installing files, you need to create directories: first -d, then -f)"
 }
 
@@ -129,6 +134,29 @@ GenerateSSH() {
 
 	ssh-keygen "-t" "ed25519" "-C" "\"$email\""
 	cat ~/.ssh/id_ed25519.pub | xclip "-selection" "clipboard"
+}
+
+MakeBackup() {
+	if [ -z "$1" ] ; then
+		echo "please type path to directory or files."
+		exit 0
+	fi
+
+	echo "generating backup..."
+
+	tar -cpvzf "$backup_name" "$1"
+}
+
+ExtractBackup() {
+	if [ -z "$1" ] ; then
+		echo "please type path to extract directory."
+		exit 0
+	fi
+
+	echo "unpacking backup..."
+	gzip -d "$backup_name"
+	tar -xvf "$archive_name" -C "$1"
+	rm "$archive_name"
 }
 
 ProcessOptions "$@"
