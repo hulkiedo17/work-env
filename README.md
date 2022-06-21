@@ -13,7 +13,7 @@ so that i don't have to configure everything manually.
 # how to run
 usage:
 ```shell
-$ ./install.sh [-u|-a|-d|-f|-i|-h|-s|-k]
+$ ./wenv.sh [-u|-a|-d|-f|-i|-h|-s|-k]
 ```
 
 # command line options
@@ -41,5 +41,5 @@ Also, if you want to generate ssh key, call -k option with email parameter, afte
 
 example:
 ```shell
-$ ./install.sh -k example@test.com
+$ ./wenv.sh -k example@test.com
 ```
