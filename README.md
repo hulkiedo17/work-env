@@ -13,7 +13,8 @@ so that i don't have to configure everything manually.
 # how to run
 usage:
 ```shell
-$ ./wenv.sh [-u|-a|-d|-f|-i|-h|-s|-k]
+$ ./install.sh
+$ wenv [-u|-a|-d|-f|-i|-h|-s|-k]
 ```
 
 # command line options
@@ -31,7 +32,7 @@ $ ./wenv.sh [-u|-a|-d|-f|-i|-h|-s|-k]
 
 # notes
 
-Programs and dotfiles for install, directories to create, see in init.sh
+Programs and dotfiles for install, directories to create, see in /scripts/wenv.sh
 
 after running -i, all *.bash files contains in ~/.bashrc.d or in ~/
 
@@ -41,5 +42,5 @@ Also, if you want to generate ssh key, call -k option with email parameter, afte
 
 example:
 ```shell
-$ ./wenv.sh -k example@test.com
+$ wenv -k example@test.com
 ```
