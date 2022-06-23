@@ -12,7 +12,7 @@ packages=(vim gcc g++ clang gdb make cmake valgrind nasm
 	asciinema xterm cppcheck strace tmux time binutils
 	util-linux shellcheck xclip)
 update_commands=(update upgrade dist-upgrade)
-directories=(.bashrc.d .bin work)
+directories=(.bashrc.d .bin work others)
 
 if [ -f "/etc/debian_version" ] ; then
 	linux_type=debian
