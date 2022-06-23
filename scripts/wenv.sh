@@ -64,6 +64,7 @@ Help() {
 	echo -e "\t-i -> install packages"
 	echo -e "\t-d -> make directories"
 	echo -e "\t-f -> install dotfiles"
+	echo -e "\t-s -> update bashrc"
 	echo -e "\t-k [email] -> generate ssh key"
 	echo -e "\t-m [path]  -> generate backup file from path"
 	echo -e "\t-e [path]  -> extract backup file to path\n"
