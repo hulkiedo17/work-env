@@ -1,3 +1,5 @@
+alias mnt='mount | column -t'
+
 # load any supplementary scripts
 for config in "$HOME"/.bashrc.d/*.bash; do
 	source "$config"
