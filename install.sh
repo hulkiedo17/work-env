@@ -15,6 +15,8 @@ dirs() {
 		printf "[%s]\n" "$i"
 		mkdir -p "$i"
 	done
+
+	printf "\n"
 }
 
 files() {
@@ -28,6 +30,8 @@ files() {
 
 	printf "[bashrc]\n"
 	cat "bashrc" >> "$HOME/.bashrc"
+
+	printf "\n"
 }
 
 dirs
