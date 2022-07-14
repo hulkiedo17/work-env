@@ -1,4 +1,8 @@
+
+
 alias mnt='mount | column -t'
+alias ..='cd ../'
+alias ...='cd ../../'
 
 # load any supplementary scripts
 for config in "$HOME"/.bashrc.d/*.bash; do

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-path_to_dotfiles="$PWD/dotfiles"
+path_to_dotfiles="$PWD/files"
 
 source_dotfiles=(vimrc gitconf xresources path prompt dbg counter)
 output_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources
@@ -8,41 +8,7 @@ output_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources
 	~/.bashrc.d/dbg.bash ~/.bashrc.d/counter.bash)
 directories=(.bashrc.d .bin work others)
 
-ProcessOptions() {
-	if [ $# -lt 1 ] ; then
-		printf "You did not provide any options.\n"
-		exit 0
-	fi
-
-	while getopts ":hadfs" opt ; do
-		case $opt in
-			h) Help ;;
-			a)
-				Directories
-				Files
-				Source
-				;;
-			d) Directories ;;
-			f) Files ;;
-			s) Source ;;
-			*) printf "\n%s - unknown option\n" "$i" ;;
-		esac
-	done
-}
-
-Help() {
-	echo "Usage: dotfiles.sh [-h|-a|-d|-f|-s]"
-	echo ""
-	echo "[options]:"
-	echo -e "\t-h -> this help message"
-	echo -e "\t-a -> use all flags(-d -f -s)"
-	echo -e "\t-d -> make directories"
-	echo -e "\t-f -> install dotfiles"
-	echo -e "\t-s -> update bashrc"
-	echo -e "(before installing files, you need to create directories: first -d, then -f)"
-}
-
-Directories() {
+dirs() {
 	cd "$HOME" || { echo "cd failure"; exit 1; }
 
 	for i in ${directories[*]}; do
@@ -51,7 +17,7 @@ Directories() {
 	done
 }
 
-Files() {
+files() {
 	cd "$path_to_dotfiles" || { echo "cd failure"; exit 1; }
 
 	# init all files without bashrc (because you can overwrite it)
@@ -64,10 +30,10 @@ Files() {
 	cat "bashrc" >> "$HOME/.bashrc"
 }
 
-Source() {
-	# shellcheck source=$HOME/.bashrc
-	source "$HOME/.bashrc"
-}
+dirs
+files
 
-ProcessOptions "$@"
+# shellcheck source=$HOME/.bashrc
+source "$HOME/.bashrc"
+
 exit 0

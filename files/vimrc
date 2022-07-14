@@ -2,5 +2,9 @@ filetype indent on
 syntax enable
 
 set autoindent
+set noexpandtab
 set number
 set hlsearch
+set ignorecase
+set tabstop=8
+
