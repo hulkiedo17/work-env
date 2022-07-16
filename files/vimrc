@@ -8,4 +8,8 @@ set autoindent
 set number
 set hlsearch
 set ignorecase
+set encoding=utf-8
+set fileencoding=utf-8
+set wrap
+set laststatus=2
 
