@@ -1,10 +1,11 @@
 filetype indent on
 syntax enable
 
-set autoindent
+set tabstop=4
+set shiftwidth=4
 set noexpandtab
+set autoindent
 set number
 set hlsearch
 set ignorecase
-set tabstop=4
 
