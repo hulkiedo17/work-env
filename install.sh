@@ -34,10 +34,16 @@ files() {
 	printf "\n"
 }
 
+source_files() {
+	for dotfile in ${!output_dotfiles[*]}; do
+		[ -f "$dotfile" ] && source "$dotfile"
+	done
+
+	[ -f ~/.bashrc ] && source ~/.bashrc
+}
+
 dirs
 files
-
-# shellcheck source=$HOME/.bashrc
-source "$HOME/.bashrc"
+source_files
 
 exit 0
