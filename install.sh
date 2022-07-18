@@ -2,10 +2,10 @@
 
 path_to_dotfiles="$PWD/files"
 
-source_dotfiles=(vimrc gitconf xresources path prompt dbg counter)
+source_dotfiles=(vimrc gitconf xresources path prompt counter)
 output_dotfiles=(~/.vimrc ~/.gitconfig ~/.Xresources
 	~/.bashrc.d/path.bash ~/.bashrc.d/prompt.bash
-	~/.bashrc.d/dbg.bash ~/.bashrc.d/counter.bash)
+	~/.bashrc.d/counter.bash)
 directories=(.bashrc.d .bin work others)
 
 dirs() {

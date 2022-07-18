@@ -4,6 +4,7 @@ alias mnt='mount | column -t'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias df='df -h'
+alias gdb='gdb -q'
 
 # load any supplementary scripts
 for config in "$HOME"/.bashrc.d/*.bash; do
