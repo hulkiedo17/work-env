@@ -1,3 +1,6 @@
-export DIR_SKIP_COUNTER=".|build"
-export FILE_COUNT_COUNTER=".c|.h|.md|.txt"
+export DIR_SKIP_COUNTER=".|build|docs"
+export FILE_SKIP_COUNTER=".md|.txt|LICENSE|.out"
+
+export DIR_COUNT_COUNTER="src|include"
+export FILE_COUNT_COUNTER=".c|.h|Makefile|.build|.sh"
 
